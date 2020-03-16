@@ -1,2 +1,2 @@
-# clima_tempo_app
- Aplicativo para previsão do tempo conforme a localização
+# Previsão Tempo  (Clone iOS) - Flutter
+ Aplicativo para previsão do tempo conforme a localização.
