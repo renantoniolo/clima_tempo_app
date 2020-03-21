@@ -9,8 +9,8 @@
   - intl: ^0.16.1
   - splashscreen: ^1.2.0
  
- # Splash Screen Android (Dia)
- ![Screenshot_1583808458](https://user-images.githubusercontent.com/8354309/76721051-7140b500-671d-11ea-9d80-9412c478a240.png)
+ # Print Screen Android (Dia)
+![splash_dia](https://user-images.githubusercontent.com/8354309/77231160-fa217b80-6b77-11ea-80b8-4c47961c300c.gif)
  
- # Splash Screen Android (Noite)
- ![Screenshot_1583808417](https://user-images.githubusercontent.com/8354309/76721085-98978200-671d-11ea-803d-85de68eedc58.png)
+ # Print Screen Android (Noite)
+![splash_noite](https://user-images.githubusercontent.com/8354309/77231306-c6932100-6b78-11ea-9f35-f589d6ba8b27.gif)
