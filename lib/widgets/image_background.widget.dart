@@ -9,7 +9,7 @@ class ImageBackground extends StatelessWidget {
       child: Image.asset(
         hourNow > 18 || hourNow < 6
             ? "assets/images/bgNight.gif"
-            : "assets/images/bgNight.gif",
+            : "assets/images/bgDay.gif",
         fit: BoxFit.cover,
         height: double.infinity,
         width: double.infinity,
