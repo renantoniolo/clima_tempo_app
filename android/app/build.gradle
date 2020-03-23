@@ -6,6 +6,12 @@ if (localPropertiesFile.exists()) {
     }
 }
 
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 def flutterRoot = localProperties.getProperty('flutter.sdk')
 if (flutterRoot == null) {
     throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
@@ -53,6 +59,7 @@ android {
     }
 
    signingConfigs {
+
        release {
            keyAlias keystoreProperties['keyAlias']
            keyPassword keystoreProperties['keyPassword']
@@ -60,6 +67,7 @@ android {
            storePassword keystoreProperties['storePassword']
        }
    }
+
    buildTypes {
        release {
            signingConfig signingConfigs.release
@@ -68,7 +76,7 @@ android {
            signingConfig signingConfigs.debug
        }
    }
-}
+
 
 flutter {
     source '../..'
@@ -80,3 +88,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }
+
+}
+
+
