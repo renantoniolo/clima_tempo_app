@@ -7,7 +7,7 @@ class DayNow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    // inicializa o formato de date/hr
+    // inicializa o formato de date/hr 
     const locale = "pt_BR";
     initializeDateFormatting(locale).then((_) {});
 

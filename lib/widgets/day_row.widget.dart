@@ -26,7 +26,7 @@ class DayRow extends StatelessWidget {
           ),
           Container(
             height: 30,
-            width: screenWidth / 4,
+            width: screenWidth / 5,
             alignment: Alignment.centerLeft,
             child: Icon(
               Icons.cloud,
@@ -36,6 +36,7 @@ class DayRow extends StatelessWidget {
             ),
           ),
           Container(
+            color: Colors.transparent,
             height: 30,
             width: 50,
             alignment: Alignment.center,
