@@ -20,7 +20,7 @@ class StateVisibility extends StatelessWidget {
               width: screenWidth / 2,
               child: Text(
                 "Visibilidade",
-                style: Theme.of(context).textTheme.display3,
+                style: Theme.of(context).textTheme.headline3,
                 textAlign: TextAlign.left,
               ),
             ),
@@ -28,7 +28,7 @@ class StateVisibility extends StatelessWidget {
               width: screenWidth / 2,
               child: Text(
                 "Índice UV",
-                style: Theme.of(context).textTheme.display3,
+                style: Theme.of(context).textTheme.headline3,
                 textAlign: TextAlign.left,
               ),
             ),
@@ -42,7 +42,7 @@ class StateVisibility extends StatelessWidget {
               child: Observer(
                 builder: (_) => Text(
                   visibility.toStringAsFixed(1) + " km/h",
-                  style: Theme.of(context).textTheme.display2,
+                  style: Theme.of(context).textTheme.headline2,
                   textAlign: TextAlign.left,
                 ),
               ),
@@ -52,7 +52,7 @@ class StateVisibility extends StatelessWidget {
               child: Observer(
                 builder: (_) => Text(
                   ozonio.toString(),
-                  style: Theme.of(context).textTheme.display2,
+                  style: Theme.of(context).textTheme.headline2,
                   textAlign: TextAlign.left,
                 ),
               ),

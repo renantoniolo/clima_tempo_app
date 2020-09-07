@@ -4,16 +4,15 @@ import 'package:mobx/mobx.dart';
 import 'package:geolocator/geolocator.dart';
 part 'geolocation_controller.g.dart';
 
-
 class GeolocationController = _GeolocationController
     with _$GeolocationController;
 
 abstract class _GeolocationController with Store {
-  final Geolocator geolocator = Geolocator()..forceAndroidLocationManager;
   final weatherController = WeatherController();
-  
+  bool status = false;
+
   @observable
-  String cityName = "";
+  String cityName = "- -";
 
   @observable
   bool isLoad = true;
@@ -22,37 +21,46 @@ abstract class _GeolocationController with Store {
   Weather weather = Weather();
 
   @action
-  void getGeoLocation() {
-    geolocator
-        .getCurrentPosition(desiredAccuracy: LocationAccuracy.best)
-        .then((Position position) async {
-      
-      isLoad = true;
+  void getGeoLocation() async {
 
-      // Retorna a cidade
-      _getAddressFromLatLng(position.latitude, position.longitude);
+    isLoad = true;
 
-      // Pega a temperatura atual
-      await weatherController.getWeather(position.latitude, position.longitude);
+    var position = await getLastKnownPosition();
 
-      // retorna a temperatura atual
-      weather = weatherController.weather;
+    print("Latitude:" + position?.latitude.toString() 
+    + "Longitude:" + position?.longitude.toString() );
 
-      isLoad = false;
+    if (position == null) return;
 
-    }).catchError((e) {
-      print(e);
-    });
+    await _weatherRequest(position.latitude, position.longitude);
+     //_getAddressFromLatLng(lat, long);
+
+    cityName = "Brasil";
+     
+    isLoad = false;
   }
 
+  _weatherRequest(double lat, double long) async {
+    
+    // Pega a temperatura atual
+    await weatherController.getWeather(lat, long);
+
+    // retorna a temperatura atual
+    weather = weatherController.weather;
+  }
+
+/*
   _getAddressFromLatLng(double lat, double long) async {
     try {
-      List<Placemark> p = await geolocator.placemarkFromCoordinates(lat, long);
+      List<Placemark> p = await placemarkFromCoordinates(lat, long);
 
       Placemark place = p[0];
-      cityName = "${place.locality}" == "" ? "${place.subAdministrativeArea}" : "${place.locality}" ;
+      cityName = "${place.locality}" == ""
+          ? "${place.subAdministrativeArea}"
+          : "${place.locality}";
     } catch (e) {
       print(e);
     }
   }
+  */
 }

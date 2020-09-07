@@ -18,7 +18,7 @@ class LoadState extends StatelessWidget {
               alignment: Alignment.center,
                 child: Text(
                   "-",
-                  style: Theme.of(context).textTheme.display4,
+                  style: Theme.of(context).textTheme.headline4,
                 ),
               )
             : SizedBox(

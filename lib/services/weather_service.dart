@@ -11,6 +11,7 @@ class WeatherService {
   String _key = "faa103b5b3681ade900c611c71095265";
 
   Future<Weather> getTemperature(double lati, double longe) async {
+
     var url = "https://api.darksky.net/forecast/" +
         _key +
         "/" +
@@ -18,6 +19,8 @@ class WeatherService {
         "," +
         longe.toString() +
         "?lang=pt&units=ca&exclude=hourly,alerts,flags";
+
+   //var url = "https://api.darksky.net/forecast/faa103b5b3681ade900c611c71095265/37.421998,-122.084?lang=pt&units=ca&exclude=hourly,alerts,flags";
 
     http.Response response = await http.get(url);
 

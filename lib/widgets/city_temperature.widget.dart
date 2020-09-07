@@ -25,7 +25,7 @@ class CityTemperature extends StatelessWidget {
             Observer(
               builder: (_) => Text(
                 cityName,
-                style: Theme.of(context).textTheme.display1,
+                style: Theme.of(context).textTheme.headline1,
                 textAlign: TextAlign.center,
               ),
             ),
@@ -34,14 +34,14 @@ class CityTemperature extends StatelessWidget {
         Observer(
           builder: (_) => Text(
             summary,
-            style: Theme.of(context).textTheme.display3,
+            style: Theme.of(context).textTheme.headline3,
             textAlign: TextAlign.center,
           ),
         ),
         Observer(
           builder: (_) => Text(
             temperature.toStringAsFixed(0) + "°",
-            style: Theme.of(context).textTheme.display4,
+            style: Theme.of(context).textTheme.headline4,
             textAlign: TextAlign.center,
           ),
         ),

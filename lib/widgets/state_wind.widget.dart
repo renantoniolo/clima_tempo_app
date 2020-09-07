@@ -23,7 +23,7 @@ class StateWind extends StatelessWidget {
               width: screenWidth / 2,
               child: Text(
                 "Vento",
-                style: Theme.of(context).textTheme.display3,
+                style: Theme.of(context).textTheme.headline2,
                 textAlign: TextAlign.left,
               ),
             ),
@@ -31,7 +31,7 @@ class StateWind extends StatelessWidget {
               width: screenWidth / 2,
               child: Text(
                 "Sensação Térmica",
-                style: Theme.of(context).textTheme.display3,
+                style: Theme.of(context).textTheme.headline3,
                 textAlign: TextAlign.left,
               ),
             ),
@@ -45,7 +45,7 @@ class StateWind extends StatelessWidget {
               child: Observer(
                 builder: (_) => Text(
                   windSpeed.toStringAsFixed(0) + " km/h",
-                  style: Theme.of(context).textTheme.display2,
+                  style: Theme.of(context).textTheme.headline2,
                   textAlign: TextAlign.left,
                 ),
               ),
@@ -55,7 +55,7 @@ class StateWind extends StatelessWidget {
               child: Observer(
                 builder: (_) => Text(
                   apparentTemperature.toStringAsFixed(0) + "°",
-                  style: Theme.of(context).textTheme.display2,
+                  style: Theme.of(context).textTheme.headline2,
                   textAlign: TextAlign.left,
                 ),
               ),

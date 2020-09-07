@@ -16,22 +16,22 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: "Heebo Regular",
         textTheme: TextTheme(
-          display1: TextStyle(
+          headline1: TextStyle(
               fontSize: 36.0,
               fontWeight: FontWeight.bold,
               fontFamily: "Heebo Regular",
               color: Colors.white),
-          display2: TextStyle(
+          headline2: TextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.normal,
               fontFamily: "Heebo",
               color: Colors.white),
-          display3: TextStyle(
+          headline3: TextStyle(
               fontSize: 16.0,
               fontWeight: FontWeight.normal,
               fontFamily: "Heebo Regular",
               color: Colors.white),
-          display4: TextStyle(
+          headline4: TextStyle(
               fontSize: 75.0,
               fontWeight: FontWeight.normal,
               fontFamily: "Heebo Regular",

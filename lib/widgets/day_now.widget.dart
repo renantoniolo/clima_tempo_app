@@ -22,7 +22,7 @@ class DayNow extends StatelessWidget {
               child: Observer(
                 builder: (_) => Text(
                   dateNow,
-                  style: Theme.of(context).textTheme.display3,
+                  style: Theme.of(context).textTheme.headline3,
                   textAlign: TextAlign.start,
                 ),
               ),
@@ -31,7 +31,7 @@ class DayNow extends StatelessWidget {
               padding: EdgeInsets.only(left: 10.0, right: 15.0),
               child: Text(
                 "HOJE",
-                style: Theme.of(context).textTheme.display2,
+                style: Theme.of(context).textTheme.headline2,
                 textAlign: TextAlign.start,
               ),
             ),
