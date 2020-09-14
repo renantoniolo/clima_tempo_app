@@ -14,6 +14,7 @@ abstract class _WeatherController with Store {
 
   @observable
   Weather weather;
+  String cityName;
 
   @action
   Future getWeather(double lat, double long) async {
@@ -21,7 +22,8 @@ abstract class _WeatherController with Store {
     try{
       isLoad = true;
       weather = await _watservice.getTemperature(lat,long);
-      isLoad = weather == null ? false : true;
+      cityName = await _watservice.getCity(lat,long);
+      isLoad = weather.longitude == null ? false : true;
     }
     catch(e) {
       print(e);

@@ -33,11 +33,9 @@ abstract class _GeolocationController with Store {
     if (position == null) return;
 
     await _weatherRequest(position.latitude, position.longitude);
-     //_getAddressFromLatLng(lat, long);
-
-    cityName = "Brasil";
      
     isLoad = false;
+
   }
 
   _weatherRequest(double lat, double long) async {
@@ -47,20 +45,10 @@ abstract class _GeolocationController with Store {
 
     // retorna a temperatura atual
     weather = weatherController.weather;
+
+    // retorna o nome da cidade 
+    cityName = weatherController.cityName;
+
   }
 
-/*
-  _getAddressFromLatLng(double lat, double long) async {
-    try {
-      List<Placemark> p = await placemarkFromCoordinates(lat, long);
-
-      Placemark place = p[0];
-      cityName = "${place.locality}" == ""
-          ? "${place.subAdministrativeArea}"
-          : "${place.locality}";
-    } catch (e) {
-      print(e);
-    }
-  }
-  */
 }
