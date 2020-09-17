@@ -1,16 +1,28 @@
 import 'dart:convert';
 import 'package:clima_tempo_app/models/weather.dart';
+import 'package:global_configuration/global_configuration.dart';
 import 'package:http/http.dart' as http;
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class WeatherService {
-  //"https://api.darksky.net/forecast/faa103b5b3681ade900c611c71095265/37.421998,-122.084?lang=pt&units=ca&exclude=hourly,alerts,flags"
 
-  String _key = "faa103b5b3681ade900c611c71095265";
-  String _keyGoogle = "AIzaSyADbk0dUoSM3fDm8K34nP4P_bMjCvUng68";
+  String _key;
+  String _keyGoogle;
+
+  WeatherService(){
+    loadFile();
+  }
+
+  loadFile() async{
+    await GlobalConfiguration().loadFromAsset("app_settings.json");
+    _key = GlobalConfiguration().getDeepValue("keyApi");
+    _keyGoogle = GlobalConfiguration().getDeepValue("keyGoogle");
+    var a =1;
+  }
 
   Future<Weather> getTemperature(double lati, double longe) async {
+
     var url = "https://api.darksky.net/forecast/" +
         _key +
         "/" +
@@ -19,14 +31,13 @@ class WeatherService {
         longe.toString() +
         "?lang=pt&units=ca&exclude=hourly,alerts,flags";
 
-    //var url = "https://api.darksky.net/forecast/faa103b5b3681ade900c611c71095265/37.421998,-122.084?lang=pt&units=ca&exclude=hourly,alerts,flags";
-
     http.Response response = await http.get(url);
 
     return decode(response);
   }
 
   Future<String> getCity(double lati, double longe) async {
+
     var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
         lati.toString() +
         "," +
