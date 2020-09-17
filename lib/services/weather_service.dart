@@ -18,18 +18,11 @@ class WeatherService {
     await GlobalConfiguration().loadFromAsset("app_settings.json");
     _key = GlobalConfiguration().getDeepValue("keyApi");
     _keyGoogle = GlobalConfiguration().getDeepValue("keyGoogle");
-    var a =1;
   }
 
   Future<Weather> getTemperature(double lati, double longe) async {
 
-    var url = "https://api.darksky.net/forecast/" +
-        _key +
-        "/" +
-        lati.toString() +
-        "," +
-        longe.toString() +
-        "?lang=pt&units=ca&exclude=hourly,alerts,flags";
+    var url = "https://api.darksky.net/forecast/${_key.toString()}/${lati.toString()},${longe.toString()}?lang=pt&units=ca&exclude=hourly,alerts,flags";
 
     http.Response response = await http.get(url);
 
@@ -38,12 +31,7 @@ class WeatherService {
 
   Future<String> getCity(double lati, double longe) async {
 
-    var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
-        lati.toString() +
-        "," +
-        longe.toString() +
-        "&key=" +
-        _keyGoogle;
+    var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=${lati.toString()},${longe.toString()}&key=${_keyGoogle.toString()}";
 
     http.Response response = await http.get(url);
 
