@@ -11,10 +11,11 @@ class WeatherService {
   String _keyGoogle;
 
   WeatherService(){
-    loadFile();
+    _loadFile();
   }
 
-  loadFile() async{
+  _loadFile() async{
+    // carrega as keys das api
     await GlobalConfiguration().loadFromAsset("app_settings.json");
     _key = GlobalConfiguration().getDeepValue("keyApi");
     _keyGoogle = GlobalConfiguration().getDeepValue("keyGoogle");
