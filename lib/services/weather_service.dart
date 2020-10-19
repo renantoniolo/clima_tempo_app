@@ -6,15 +6,14 @@ import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class WeatherService {
-
   String _key;
   String _keyGoogle;
 
-  WeatherService(){
+  WeatherService() {
     _loadFile();
   }
 
-  _loadFile() async{
+  _loadFile() async {
     // carrega as keys das api
     await GlobalConfiguration().loadFromAsset("app_settings.json");
     _key = GlobalConfiguration().getDeepValue("keyApi");
@@ -22,8 +21,10 @@ class WeatherService {
   }
 
   Future<Weather> getTemperature(double lati, double longe) async {
+    var url =
+        "https://api.darksky.net/forecast/${_key.toString()}/${lati.toString()},${longe.toString()}?lang=pt&units=ca&exclude=hourly,alerts,flags";
 
-    var url = "https://api.darksky.net/forecast/${_key.toString()}/${lati.toString()},${longe.toString()}?lang=pt&units=ca&exclude=hourly,alerts,flags";
+    print(url);
 
     http.Response response = await http.get(url);
 
@@ -31,8 +32,8 @@ class WeatherService {
   }
 
   Future<String> getCity(double lati, double longe) async {
-
-    var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=${lati.toString()},${longe.toString()}&key=${_keyGoogle.toString()}";
+    var url =
+        "https://maps.googleapis.com/maps/api/geocode/json?latlng=${lati.toString()},${longe.toString()}&key=${_keyGoogle.toString()}";
 
     http.Response response = await http.get(url);
 

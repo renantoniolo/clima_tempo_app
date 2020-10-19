@@ -22,33 +22,34 @@ abstract class _GeolocationController with Store {
 
   @action
   void getGeoLocation() async {
-
     isLoad = true;
 
-    var position = await getLastKnownPosition();
+    var position =
+        await getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
 
-    print("Latitude:" + position?.latitude.toString() 
-    + "Longitude:" + position?.longitude.toString() );
+    print("Latitude:" +
+        position?.latitude.toString() +
+        "Longitude:" +
+        position?.longitude.toString());
 
-    if (position == null) return;
+    if (position == null) {
+      print("não é possível acessar a geolocalização!");
+      return;
+    }
 
     await _weatherRequest(position.latitude, position.longitude);
-     
-    isLoad = false;
 
+    isLoad = false;
   }
 
   _weatherRequest(double lat, double long) async {
-    
     // Pega a temperatura atual
     await weatherController.getWeather(lat, long);
 
     // retorna a temperatura atual
     weather = weatherController.weather;
 
-    // retorna o nome da cidade 
+    // retorna o nome da cidade
     cityName = weatherController.cityName;
-
   }
-
 }
