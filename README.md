@@ -2,7 +2,8 @@
  Aplicativo exibe a temperatura e previsão do tempo dos 5 próximos dias, conforme a sua localização.
  
  # Link do Aplicativo publicado
- [Google Play](https://play.google.com/store/apps/details?id=com.renanrocha.clima_tempo_app)
+  - [Google Play](https://play.google.com/store/apps/details?id=com.renanrocha.clima_tempo_app)
+  - Apple Store
  
   # Flutter Packages
   - geolocator: ^6.0.0+4
