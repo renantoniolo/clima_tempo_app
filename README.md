@@ -1,6 +1,9 @@
 # Previsão Tempo (Clone iOS) - Flutter
  Aplicativo exibe a temperatura e previsão do tempo dos 5 próximos dias, conforme a sua localização.
  
+ # Link do Aplicativo publicado
+ [Google Play](https://play.google.com/store/apps/details?id=com.renanrocha.clima_tempo_app)
+ 
   # Flutter Packages
   - geolocator: ^6.0.0+4
   - mobx: ^0.4.0+2
