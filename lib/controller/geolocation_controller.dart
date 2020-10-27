@@ -34,22 +34,26 @@ abstract class _GeolocationController with Store {
 
     if (position == null) {
       print("não é possível acessar a geolocalização!");
+      isLoad = true;
       return;
     }
 
-    await _weatherRequest(position.latitude, position.longitude);
-
-    isLoad = false;
+    isLoad = await _weatherRequest(position.latitude, position.longitude);
   }
 
-  _weatherRequest(double lat, double long) async {
+  Future<bool> _weatherRequest(double lat, double long) async {
     // Pega a temperatura atual
     await weatherController.getWeather(lat, long);
+
+    // caso a webApi retorne null
+    if (weatherController.weather == null) return true;
 
     // retorna a temperatura atual
     weather = weatherController.weather;
 
     // retorna o nome da cidade
     cityName = weatherController.cityName;
+
+    return false;
   }
 }

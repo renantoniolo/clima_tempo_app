@@ -24,11 +24,9 @@ class WeatherService {
     var url =
         "https://api.darksky.net/forecast/${_key.toString()}/${lati.toString()},${longe.toString()}?lang=pt&units=ca&exclude=hourly,alerts,flags";
 
-    print(url);
-
     http.Response response = await http.get(url);
 
-    return decode(response);
+    return _decode(response);
   }
 
   Future<String> getCity(double lati, double longe) async {
@@ -37,28 +35,30 @@ class WeatherService {
 
     http.Response response = await http.get(url);
 
-    return decodeCity(response);
+    return _decodeCity(response);
   }
 
-  String decodeCity(http.Response response) {
+  String _decodeCity(http.Response response) {
     if (response.statusCode == 200) {
       var decoded = json.decode(response.body);
 
       var nameCity =
           decoded["results"][3]["address_components"][3]["long_name"];
 
+      // verifica se veio algo
+      if (nameCity.isEmpty || nameCity == null) return "Brasil";
+
       return nameCity;
     } else
       return "Error";
   }
 
-  Weather decode(http.Response response) {
-    try {
-      Weather weather = Weather();
+  Weather _decode(http.Response response) {
+    Weather weather = Weather();
 
+    try {
       if (response.statusCode == 200) {
         // ok
-
         var decoded = json.decode(response.body);
 
         weather.latitude = decoded["latitude"];
@@ -82,18 +82,18 @@ class WeatherService {
           var date = new DateTime.now();
           _weatherDay.day = new DateFormat.EEEE(locale)
               .format(new DateTime(date.year, date.month, date.day + 1 + i));
-          _weatherDay.temperatureMin =
-              decoded["daily"]["data"][i]["apparentTemperatureMin"];
-          _weatherDay.temperatureMax =
-              decoded["daily"]["data"][i]["apparentTemperatureMax"];
+          _weatherDay.temperatureMin = decoded["daily"]["data"][i]
+                  ["apparentTemperatureMin"]
+              .toStringAsFixed(0);
+          _weatherDay.temperatureMax = decoded["daily"]["data"][i]
+                  ["apparentTemperatureMax"]
+              .toStringAsFixed(0);
           weather.days.add(_weatherDay);
         }
       }
-
       return weather;
     } catch (e) {
-      Weather weather = Weather();
-      return weather;
+      return null;
     }
   }
 }

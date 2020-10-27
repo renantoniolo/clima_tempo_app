@@ -1,6 +1,6 @@
 import 'package:clima_tempo_app/models/weather.dart';
 import 'package:flutter/material.dart';
-import 'day_row.widget.dart';
+import 'day_row.dart';
 
 class ListDay extends StatelessWidget {
   final List<WeatherDay> listDay;

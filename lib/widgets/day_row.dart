@@ -41,7 +41,7 @@ class DayRow extends StatelessWidget {
             width: 50,
             alignment: Alignment.center,
             child: Text(
-              day.temperatureMax.toStringAsFixed(0) + "°",
+              day.temperatureMax + "°",
               style: Theme.of(context).textTheme.headline3,
               textAlign: TextAlign.center,
             ),
@@ -51,7 +51,7 @@ class DayRow extends StatelessWidget {
             width: 50,
             alignment: Alignment.center,
             child: Text(
-              day.temperatureMin.toStringAsFixed(0) + "°",
+              day.temperatureMin + "°",
               style: Theme.of(context).textTheme.caption,
               textAlign: TextAlign.center,
             ),
