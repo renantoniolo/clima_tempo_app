@@ -54,11 +54,11 @@ class WeatherService {
   }
 
   Weather _decode(http.Response response) {
-    Weather weather = Weather();
-
     try {
+      Weather weather = Weather();
       if (response.statusCode == 200) {
         // ok
+
         var decoded = json.decode(response.body);
 
         weather.latitude = decoded["latitude"];
@@ -83,16 +83,22 @@ class WeatherService {
           _weatherDay.day = new DateFormat.EEEE(locale)
               .format(new DateTime(date.year, date.month, date.day + 1 + i));
           _weatherDay.temperatureMin = decoded["daily"]["data"][i]
-                  ["apparentTemperatureMin"]
-              .toStringAsFixed(0);
+                      ["apparentTemperatureMin"]
+                  .toStringAsFixed(0) +
+              "°";
           _weatherDay.temperatureMax = decoded["daily"]["data"][i]
-                  ["apparentTemperatureMax"]
-              .toStringAsFixed(0);
+                      ["apparentTemperatureMax"]
+                  .toStringAsFixed(0) +
+              "°";
           weather.days.add(_weatherDay);
         }
+        return weather;
+      } else {
+        // error
+        return null;
       }
-      return weather;
     } catch (e) {
+      // exception
       return null;
     }
   }

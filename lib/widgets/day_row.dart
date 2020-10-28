@@ -9,14 +9,15 @@ class DayRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var screenWidth = MediaQuery.of(context).size.width - 30;
-
+    var widthValue = (screenWidth - 140) / 3;
     return Padding(
       padding: EdgeInsets.all(5),
       child: Row(
         children: <Widget>[
           Container(
+            color: Colors.transparent,
             height: 30,
-            width: screenWidth / 2,
+            width: 140,
             alignment: Alignment.centerLeft,
             margin: EdgeInsets.only(left: 10.0),
             child: Text(
@@ -25,9 +26,10 @@ class DayRow extends StatelessWidget {
             ),
           ),
           Container(
+            color: Colors.transparent,
             height: 30,
-            width: screenWidth / 5,
-            alignment: Alignment.centerLeft,
+            width: widthValue,
+            alignment: Alignment.center,
             child: Icon(
               Icons.cloud,
               color: Colors.white,
@@ -38,20 +40,21 @@ class DayRow extends StatelessWidget {
           Container(
             color: Colors.transparent,
             height: 30,
-            width: 50,
-            alignment: Alignment.center,
+            width: widthValue,
+            alignment: Alignment.centerRight,
             child: Text(
-              day.temperatureMax + "°",
+              day.temperatureMax,
               style: Theme.of(context).textTheme.headline3,
               textAlign: TextAlign.center,
             ),
           ),
           Container(
+            color: Colors.transparent,
             height: 30,
-            width: 50,
-            alignment: Alignment.center,
+            width: widthValue,
+            alignment: Alignment.centerRight,
             child: Text(
-              day.temperatureMin + "°",
+              day.temperatureMin,
               style: Theme.of(context).textTheme.caption,
               textAlign: TextAlign.center,
             ),
