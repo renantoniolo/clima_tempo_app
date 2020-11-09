@@ -22,8 +22,9 @@ abstract class _WeatherController with Store {
       weather = await _watservice.getTemperature(lat, long);
       cityName = await _watservice.getCity(lat, long);
       isLoad = weather == null ? false : true;
+      isLoad = false;
     } catch (e) {
-      isLoad = true;
+      isLoad = false;
       print(e);
     }
   }

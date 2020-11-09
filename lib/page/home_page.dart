@@ -1,3 +1,4 @@
+import 'package:clima_tempo_app/alert/alert_dialog.dart';
 import 'package:clima_tempo_app/controller/geolocation_controller.dart';
 import 'package:clima_tempo_app/widgets/city_temperature.dart';
 import 'package:clima_tempo_app/widgets/day_now.dart';
@@ -18,11 +19,21 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   final locationController = GeolocationController();
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   void initState() {
     super.initState();
-    locationController.getGeoLocation();
+
+    doSomeAsyncStuff();
+  }
+
+  Future<void> doSomeAsyncStuff() async {
+    await locationController.getConnection();
+    if (!locationController.isConnection) {
+      showInSnackBar("Sem conexão com a internet!");
+    } else {
+      locationController.getGeoLocation();
+    }
   }
 
   @override
@@ -33,6 +44,7 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Theme.of(context).primaryColor,
       body: Stack(
         children: <Widget>[
@@ -82,5 +94,10 @@ class _HomePageState extends State<HomePage>
         ],
       ),
     );
+  }
+
+  void showInSnackBar(String value) {
+    _scaffoldKey.currentState
+        .showSnackBar(new SnackBar(content: new Text(value)));
   }
 }

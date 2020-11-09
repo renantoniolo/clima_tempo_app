@@ -43,6 +43,23 @@ mixin _$GeolocationController on _GeolocationController, Store {
     }, _$isLoadAtom, name: '${_$isLoadAtom.name}_set');
   }
 
+  final _$isConnectionAtom = Atom(name: '_GeolocationController.isConnection');
+
+  @override
+  bool get isConnection {
+    _$isConnectionAtom.context.enforceReadPolicy(_$isConnectionAtom);
+    _$isConnectionAtom.reportObserved();
+    return super.isConnection;
+  }
+
+  @override
+  set isConnection(bool value) {
+    _$isConnectionAtom.context.conditionallyRunInAction(() {
+      super.isConnection = value;
+      _$isConnectionAtom.reportChanged();
+    }, _$isConnectionAtom, name: '${_$isConnectionAtom.name}_set');
+  }
+
   final _$weatherAtom = Atom(name: '_GeolocationController.weather');
 
   @override
@@ -60,16 +77,17 @@ mixin _$GeolocationController on _GeolocationController, Store {
     }, _$weatherAtom, name: '${_$weatherAtom.name}_set');
   }
 
-  final _$_GeolocationControllerActionController =
-      ActionController(name: '_GeolocationController');
+  final _$getGeoLocationAsyncAction = AsyncAction('getGeoLocation');
 
   @override
-  void getGeoLocation() {
-    final _$actionInfo = _$_GeolocationControllerActionController.startAction();
-    try {
-      return super.getGeoLocation();
-    } finally {
-      _$_GeolocationControllerActionController.endAction(_$actionInfo);
-    }
+  Future<dynamic> getGeoLocation() {
+    return _$getGeoLocationAsyncAction.run(() => super.getGeoLocation());
+  }
+
+  final _$getConnectionAsyncAction = AsyncAction('getConnection');
+
+  @override
+  Future<dynamic> getConnection() {
+    return _$getConnectionAsyncAction.run(() => super.getConnection());
   }
 }

@@ -1,7 +1,8 @@
 import 'package:clima_tempo_app/controller/weather_controller.dart';
 import 'package:clima_tempo_app/models/weather.dart';
-import 'package:mobx/mobx.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:mobx/mobx.dart';
+import 'package:connectivity/connectivity.dart';
 part 'geolocation_controller.g.dart';
 
 class GeolocationController = _GeolocationController
@@ -18,14 +19,15 @@ abstract class _GeolocationController with Store {
   bool isLoad = true;
 
   @observable
+  bool isConnection = true;
+
+  @observable
   Weather weather = Weather();
 
   @action
-  void getGeoLocation() async {
-    isLoad = true;
-
-    var position =
-        await getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+  Future getGeoLocation() async {
+    var position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
 
     print("Latitude:" +
         position?.latitude.toString() +
@@ -39,6 +41,17 @@ abstract class _GeolocationController with Store {
     }
 
     isLoad = await _weatherRequest(position.latitude, position.longitude);
+  }
+
+  @action
+  Future getConnection() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if (connectivityResult == ConnectivityResult.mobile ||
+        connectivityResult == ConnectivityResult.wifi) {
+      isConnection = true;
+    } else if (connectivityResult == ConnectivityResult.none) {
+      isConnection = false;
+    }
   }
 
   Future<bool> _weatherRequest(double lat, double long) async {
