@@ -24,10 +24,10 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
 
-    doSomeAsyncStuff();
+    _initStateAsync();
   }
 
-  Future<void> doSomeAsyncStuff() async {
+  Future<void> _initStateAsync() async {
     await locationController.getConnection();
     if (!locationController.isConnection) {
       showInSnackBar("Sem conexão com a internet!");
@@ -97,7 +97,17 @@ class _HomePageState extends State<HomePage>
   }
 
   void showInSnackBar(String value) {
-    _scaffoldKey.currentState
-        .showSnackBar(new SnackBar(content: new Text(value)));
+    _scaffoldKey.currentState.showSnackBar(new SnackBar(
+      content: new Text(value),
+      backgroundColor: Colors.red,
+      duration: const Duration(seconds: 30),
+      action: SnackBarAction(
+        label: "Fechar",
+        textColor: Colors.white,
+        onPressed: () {
+          _scaffoldKey.currentState.hideCurrentSnackBar();
+        },
+      ),
+    ));
   }
 }
