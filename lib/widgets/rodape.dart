@@ -8,8 +8,7 @@ class Rodape extends StatelessWidget {
       children: <Widget>[
         Text(
           "Tempo Local - versão 2.1.0",
-          style: TextStyle(
-              color: Colors.white, fontSize: 12, fontStyle: FontStyle.italic),
+          style: Theme.of(context).textTheme.headline5,
           textAlign: TextAlign.center,
         )
       ],

@@ -41,6 +41,12 @@ class MyApp extends StatelessWidget {
               fontWeight: FontWeight.normal,
               fontFamily: "Heebo Regular",
               color: Colors.grey),
+          headline5: TextStyle(
+              fontSize: 12.0,
+              fontWeight: FontWeight.normal,
+              fontStyle: FontStyle.italic,
+              fontFamily: "Heebo Regular",
+              color: Colors.white),
         ),
       ),
       home: MyHomePage(),
