@@ -1,5 +1,5 @@
 ## Previsão Tempo (Clone Tempo iOS)
- Aplicativo exibe a temperatura e previsão do tempo dos 5 próximos dias, conforme a sua localização.
+ Aplicativo exibe a temperatura e previsão do tempo dos próximos 5 dias, conforme a sua localização.
  
  ### Link do Aplicativo publicado
  - [x] [Google Play](https://play.google.com/store/apps/details?id=com.renanrocha.clima_tempo_app)
